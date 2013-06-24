@@ -1,0 +1,103 @@
+﻿@model ProviderPortal.Models.ProviderViewModel
+
+@{
+    ViewBag.Title = "ProviderRegistration";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Provider Registration</h2> <br />
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    
+<p style="color:green" id="errorMessage">@ViewBag.Message</p>
+   
+<div class="widget">
+    <div class="widget-head">
+        <div class="pull-left">Add New Provider</div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="widget-content" style="display: block;">
+        <div class="padd">
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ProviderName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ProviderName)
+            @Html.ValidationMessageFor(model => model.ProviderName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ProviderDescription)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ProviderDescription)
+            @Html.ValidationMessageFor(model => model.ProviderDescription)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PrivacyStatement)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PrivacyStatement)
+            @Html.ValidationMessageFor(model => model.PrivacyStatement)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AuthorizationReason)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.AuthorizationReason)
+            @Html.ValidationMessageFor(model => model.AuthorizationReason)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TermsOfUse)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.TermsOfUse)
+            @Html.ValidationMessageFor(model => model.TermsOfUse)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Email)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Email)
+            @Html.ValidationMessageFor(model => model.Email)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.UserName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.UserName)
+            @Html.ValidationMessageFor(model => model.UserName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Password)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Password)
+            @Html.ValidationMessageFor(model => model.Password)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ConfirmPassword)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ConfirmPassword)
+            @Html.ValidationMessageFor(model => model.ConfirmPassword)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" class="btn btn-large btn-primary" />
+        </p>
+        </div>
+    </div>
+</div>
+}
+

@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProviderPortal", "ProviderPortal\ProviderPortal.csproj", "{6EBE013E-B219-43BA-BF00-EE3A1856E3D0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProviderPortal.Tests", "ProviderPortal.Tests\ProviderPortal.Tests.csproj", "{9534CC19-8CAA-45A8-92F1-34DA2DF514BE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HealthReunionDataAccess", "HealthReunionDataAccess\HealthReunionDataAccess.csproj", "{9CC5EFF6-B635-4BE1-8DDF-01719DA89F5E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6EBE013E-B219-43BA-BF00-EE3A1856E3D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EBE013E-B219-43BA-BF00-EE3A1856E3D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EBE013E-B219-43BA-BF00-EE3A1856E3D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EBE013E-B219-43BA-BF00-EE3A1856E3D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9534CC19-8CAA-45A8-92F1-34DA2DF514BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9534CC19-8CAA-45A8-92F1-34DA2DF514BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9534CC19-8CAA-45A8-92F1-34DA2DF514BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9534CC19-8CAA-45A8-92F1-34DA2DF514BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CC5EFF6-B635-4BE1-8DDF-01719DA89F5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CC5EFF6-B635-4BE1-8DDF-01719DA89F5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CC5EFF6-B635-4BE1-8DDF-01719DA89F5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CC5EFF6-B635-4BE1-8DDF-01719DA89F5E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

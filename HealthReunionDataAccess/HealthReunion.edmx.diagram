@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0da5a44078c443aaabcc362c0c0653c2" Name="Diagram1">
+        <EntityTypeShape EntityType="HealthReunionModel.Document" Width="1.5" PointX="0.16477505125327738" PointY="18.449564689048362" />
+        <EntityTypeShape EntityType="HealthReunionModel.Patient" Width="1.5" PointX="3.4332591571999989" PointY="21.787133837950943" />
+        <AssociationConnector Association="HealthReunionModel.FK__Documents__Patie__35BCFE0A" />
+        <EntityTypeShape EntityType="HealthReunionModel.User" Width="1.5" PointX="5.4723450771869828" PointY="31.88644251222091" />
+        <EntityTypeShape EntityType="HealthReunionModel.Appointment" Width="1.5" PointX="12.125" PointY="9" />
+        <AssociationConnector Association="HealthReunionModel.FK_Appointments_Patients" />
+        <EntityTypeShape EntityType="HealthReunionModel.Provider" Width="1.5" PointX="10.233913364929107" PointY="12.218598073450195" />
+        <AssociationConnector Association="HealthReunionModel.FK_Appointments_Providers" />
+        <AssociationConnector Association="HealthReunionModel.FK__Documents__Provi__5441852A" />
+        <AssociationConnector Association="HealthReunionModel.FK__Patients__Provid__5070F446" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title - HealthReunion Providers Portal</title>
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width" />
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
+
+        <link href="~/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <link href="~/Content/widget.css" rel="stylesheet" />
+ 
+        <style>
+        * {
+          margin: 0;
+        }
+        html, body {
+          height: 100%;
+        }
+        .page-wrap {
+          min-height: 100%;
+          /* equal to footer height */
+          margin-bottom: -70px; 
+        }
+        .page-wrap:after {
+          content: "";
+          display: block;
+        }
+        .site-footer, .page-wrap:after {
+          /* .push must be the same height as footer */
+          height: 40px; 
+        }
+        .site-footer {
+          background-color: cadetblue;
+        }
+
+        .navbar-inner {
+          background-color: cadetblue; /* background color will be black for all browsers */
+          background-image: none;
+          background-repeat: no-repeat;
+          filter: none;
+        }
+
+        .navbar .nav > li > a {
+            float: none;
+            line-height: 19px;
+            padding: 9px 10px 11px;
+            text-decoration: none;
+            text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+            color:  White;
+        }
+      </style>
+     </head>
+    <body>
+        <header>
+             <section class="featured">
+                <img src="~/Images/ProviderLogon.png" />   
+             </section>
+            <div class="content-wrapper">
+                <section id="navbar">
+                  <div class="navbar">
+                    <div class="navbar-inner">
+                      <div class="container" style="width: auto;">
+                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                          <span class="icon-bar"></span>
+                          <span class="icon-bar"></span>
+                          <span class="icon-bar"></span>
+                        </a>
+                        <div class="nav-collapse" style="float:right">
+                          <ul class="nav">
+                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                            <li>@Html.ActionLink("Logout", "LogOff", "Account")</li>
+                          </ul>        
+                        </div><!-- /.nav-collapse -->
+                      </div>
+                    </div><!-- /navbar-inner -->
+                  </div><!-- /navbar -->               </section>
+            </div>
+        </header>
+        <div class="page-wrap">
+            <div id="body">           
+                @RenderSection("featured", required: false)
+                <section class="content-wrapper main-content clear-fix">
+                    @RenderBody()
+                </section>
+            </div>
+        </div>
+        <footer>
+            <div class="site-footer">
+                <div class="float-left">
+                    <p style="color:white">&copy; @DateTime.Now.Year - Designed and Developed by Ranjan Dailata</p>
+                </div>
+            </div>
+        </footer>
+
+        @Scripts.Render("~/bundles/jquery")
+        @RenderSection("scripts", required: false)
+        <script src="bootstrap/js/bootstrap.min.js"></script>     
+    </body>
+</html>

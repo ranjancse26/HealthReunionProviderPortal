@@ -1,0 +1,219 @@
+﻿@model ProviderPortal.Models.PatientViewModel
+
+@{
+    ViewBag.Title = "PatientRegistration";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    var grid = new WebGrid(Model.PatientViewModelGrid, canSort: false);
+}
+
+<h2>Patient Registration</h2>
+
+<br />
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+ 
+ <p style="color:green" id="errorMessage">@ViewBag.Message</p>
+    
+ <div class="widget">
+    <div class="widget-head">
+        <div class="pull-left">Add New Patient</div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="widget-content" style="display: block;">
+        <div class="padd">
+
+         @Html.HiddenFor(model => model.PatientViewEntity.PatientId)
+
+         <div class="editor-label">
+            @Html.LabelFor(model => model.PatientViewEntity.FirstName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PatientViewEntity.FirstName)
+            @Html.ValidationMessageFor(model => model.PatientViewEntity.FirstName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PatientViewEntity.MiddleName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PatientViewEntity.MiddleName)
+            @Html.ValidationMessageFor(model => model.PatientViewEntity.MiddleName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PatientViewEntity.LastName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PatientViewEntity.LastName)
+            @Html.ValidationMessageFor(model => model.PatientViewEntity.LastName)
+        </div>
+               
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PatientViewEntity.UserName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PatientViewEntity.UserName)
+            @Html.ValidationMessageFor(model => model.PatientViewEntity.UserName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PatientViewEntity.DOB)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PatientViewEntity.DOB)
+            @Html.ValidationMessageFor(model => model.PatientViewEntity.DOB)
+        </div>
+        <br />
+        <div class="editor-field">
+          @Html.RadioButtonFor(model =>model.PatientViewEntity.Gender,"Male",true) Male  @Html.RadioButtonFor(model =>model.PatientViewEntity.Gender,"Female",false) Female 
+          @Html.ValidationMessageFor(model =>model.PatientViewEntity.Gender)
+        </div>
+        <br />
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PatientViewEntity.Address)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PatientViewEntity.Address)
+            @Html.ValidationMessageFor(model => model.PatientViewEntity.Address)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PatientViewEntity.Phone)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PatientViewEntity.Phone)
+            @Html.ValidationMessageFor(model => model.PatientViewEntity.Phone)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PatientViewEntity.Email)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PatientViewEntity.Email)
+            @Html.ValidationMessageFor(model => model.PatientViewEntity.Email)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PatientViewEntity.City)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PatientViewEntity.City)
+            @Html.ValidationMessageFor(model => model.PatientViewEntity.City)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PatientViewEntity.State)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PatientViewEntity.State)
+            @Html.ValidationMessageFor(model => model.PatientViewEntity.State)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PatientViewEntity.Country)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PatientViewEntity.Country)
+            @Html.ValidationMessageFor(model => model.PatientViewEntity.Country)
+        </div>
+        <p>
+            <input type="submit" value="Save" class="btn btn-small btn-primary" />
+            <input type="button" class="btn btn-small btn-primary" onclick="javascript:Clear()" value="Clear" />
+        </p>
+    </div>
+   </div>
+  </div>
+}
+
+@if (Model.PatientViewModelGrid.Count == 0)
+{
+    <p>No data found</p>
+}
+else
+{   
+    @grid.GetHtml(htmlAttributes: new {id ="grid"}, 
+    tableStyle: "table table-striped table-hover",
+    headerStyle: "webgrid-header",
+    footerStyle: "webgrid-footer",
+    alternatingRowStyle: "webgrid-row-style",
+    selectedRowStyle: "webgrid-selected-row",
+    rowStyle: "webgrid-row-style",
+    columns: grid.Columns(
+            grid.Column(format: @<text>
+                            <button class="btn btn-small btn-primary" id="@item.PatientId" onclick="javascript:EditPatientRecord(@item.PatientId)">Edit</button>
+                        </text>),
+            grid.Column("First Name", format: @<text>@item.FirstName</text>),
+            grid.Column("Middle Name", format: @<text>@item.MiddleName</text>),
+            grid.Column("Last Name", format: @<text>@item.LastName</text>),
+            grid.Column("Birth Date", format: @<text>@item.DOB</text>),
+            grid.Column("Phone", format: @<text>@item.Phone</text>),
+            grid.Column("City", format: @<text>@item.City</text>),
+            grid.Column("State", format: @<text>@item.State</text>),
+            grid.Column("Country", format: @<text>@item.Country</text>)
+            )
+        )
+}  
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<script>
+  
+    function Clear() {
+        $('#PatientViewEntity_PatientId').val(0);
+        $('#PatientViewEntity_FirstName').val('');
+        $('#PatientViewEntity_MiddleName').val('');
+        $('#PatientViewEntity_LastName').val('');
+        $('#PatientViewEntity_City').val('');
+        $('#PatientViewEntity_State').val('');
+        $('#PatientViewEntity_Country').val('');
+        $('#PatientViewEntity_Phone').val('');
+        $('#PatientViewEntity_Address').val('');
+        $('#PatientViewEntity_Email').val('');
+        $('#PatientViewEntity_UserName').val('');
+        $('#PatientViewEntity_DOB').val('');
+        $("#PatientViewEntity_UserName").removeAttr('readonly');
+        $('input:radio[id="PatientViewEntity_Gender"]').filter('[value="Male"]').attr('checked', false);
+        $('input:radio[id="PatientViewEntity_Gender"]').filter('[value="Female"]').attr('checked', false);
+    }
+
+    function SubmitForm() {
+        $('#PatientViewEntity_PatientId').val(-1);
+        $(this).submit();
+    }
+
+    function EditPatientRecord(patientId) {
+        var url = '@Url.Action("GetPatientById", "Patient")' + '?patientId=' + patientId; 
+        $.getJSON(url, null,
+            function (data) {
+                $('#PatientViewEntity_PatientId').val(data.PatientId);
+                $('#PatientViewEntity_FirstName').val(data.FirstName);
+                $('#PatientViewEntity_MiddleName').val(data.MiddleName);
+                $('#PatientViewEntity_LastName').val(data.LastName);
+                $('#PatientViewEntity_City').val(data.City);
+                $('#PatientViewEntity_State').val(data.State);
+                $('#PatientViewEntity_Country').val(data.Country);
+                $('#PatientViewEntity_Phone').val(data.Phone);
+                $('#PatientViewEntity_Address').val(data.Address);
+                $('#PatientViewEntity_Email').val(data.Email);
+                $('#PatientViewEntity_UserName').val(data.UserName);
+                $('#PatientViewEntity_DOB').val(data.DOB);
+                 if (data.Sex)
+                    $('input:radio[id="PatientViewEntity_Gender"]').filter('[value="Male"]').attr('checked', true);                   
+                else
+                     $('input:radio[id="PatientViewEntity_Gender"]').filter('[value="Female"]').attr('checked', true);
+                 $('#PatientViewEntity_UserName').attr('readonly', 'readonly');
+            }
+        )
+        .error(function (data) {
+            $('#errorMessage').text(data.responseText);
+            $('#errorMessage').css('color', 'red');
+        })
+    }
+</script>

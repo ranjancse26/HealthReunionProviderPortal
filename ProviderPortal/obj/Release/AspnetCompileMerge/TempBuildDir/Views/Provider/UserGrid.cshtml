@@ -1,0 +1,27 @@
+﻿@model ProviderPortal.Models.UserViewModel
+
+@{
+    var grid = new WebGrid(Model.UserViewEntityGrid, canSort: false);
+}
+
+@if (Model.UserViewEntityGrid.Count == 0)
+{
+    <p>No data found</p>
+}
+else
+{   
+    @grid.GetHtml(htmlAttributes: new {id ="grid"}, 
+    tableStyle: "table table-striped table-hover",
+    headerStyle: "webgrid-header",
+    footerStyle: "webgrid-footer",
+    alternatingRowStyle: "webgrid-row-style",
+    selectedRowStyle: "webgrid-selected-row",
+    rowStyle: "webgrid-row-style",
+    columns: grid.Columns(
+            grid.Column(format: @<text>
+                            <button class="btn btn-small btn-primary" id="@item.UserId" onclick="javascript:RemoveUser(@item.UserId)">Delete</button>
+                        </text>),
+            grid.Column("User Name", format: @<text>@item.UserName</text>)          
+            )
+        )
+}  

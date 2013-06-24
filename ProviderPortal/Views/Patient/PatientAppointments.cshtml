@@ -1,0 +1,80 @@
+﻿@model ProviderPortal.Models.AppointmentViewModel
+
+<script src="~/Scripts/jquery-1.8.2.js"></script>
+<h2>Patient Appointments</h2>
+<br />
+
+@using (Html.BeginForm()) 
+{
+
+<p style="color:green" id="errorMessage">@ViewBag.Message</p>
+
+@Html.DropDownListFor(x => x.Patients.SelectedItemId, Model.Patients.Items)
+<br />
+<input type="date" id="appointmentDate" name="appointmentDate"/>  
+    
+<p>
+   <input type="button" value="Get Appointment" class="btn btn-small btn-primary" onclick='javascript:GetAppointmentsForPatient()' />
+</p>
+    
+}
+
+<div id="patientAppointmentsGrid">
+
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<script>
+    $(document).ready(function () {
+
+        var now = new Date();
+        var month = (now.getMonth() + 1);
+        var day = now.getDate();
+        if (month < 10)
+            month = "0" + month;
+        if (day < 10)
+            day = "0" + day;
+        var today = now.getFullYear() + '-' + month + '-' + day;
+
+        $('#appointmentDate').val(today);
+    });
+
+    function GetAppointmentsForPatient() {
+
+        if($('#appointmentDate').val() == '') {
+            $('#errorMessage').html('Please select date of appointment');
+            return;
+        }
+
+        if ($('#Patients_SelectedItemId').val() == -1)
+            return;
+
+        $('#errorMessage').html('');
+
+        var url = '@Url.Action("GetPatientAppointments", "Patient")';
+        $.ajax({
+            url: url,
+            data: 'patientId=' + $('#Patients_SelectedItemId').val() + '&appointmentDate=' + $('#appointmentDate').val(),
+            type: "post",
+            success: function (response) {
+                $('#patientAppointmentsGrid').html(response);
+            },
+            error: function (response) {
+                $('#errorMessage').text(response.responseText);
+                $('#errorMessage').css('color', 'red');
+            }
+        });
+    }
+</script>
+
+<style type="text/css">
+    .table
+    {
+        width: 80%;
+        border: 0px;
+        border-collapse: collapse;
+    }
+</style>

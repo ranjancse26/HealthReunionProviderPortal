@@ -1,0 +1,36 @@
+﻿@model ProviderPortal.Models.LoginModel
+
+@{
+    ViewBag.Title = "Please sign in";
+}
+
+<br />
+<section id="loginForm">
+@using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl })) 
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <H2>Please sign in</H2>
+    <input type="text" id="UserName" name="UserName" class="input-block-level" placeholder="User Name"> 
+     @Html.ValidationMessageFor(m => m.UserName)
+    <br />
+    <input type="password" id="Password" name="Password" class="input-block-level" placeholder="Password">   
+    @Html.ValidationMessageFor(m => m.Password) 
+    <br />
+    @Html.DropDownListFor(x => x.SelectedProvider, Model.Providers.Items)
+    <br />
+    <input type="submit" class="btn btn-primary btn-large" value="Log in" />
+    <br />
+    <br />
+    <a href="@Url.Action("ProviderRegistration","Provider")">Create New Provider</a>
+}
+</section>
+
+<section class="social" id="socialLoginForm">
+    <img src="~/Images/Doctor.jpg" height="200" width="150" />
+</section>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
